@@ -23,6 +23,9 @@ router.get('/', (req, res, next) => {
 })
 
 router.get('/:id', (req, res, next) => {
+    if (req.headers.token !== "APIToken"){
+        res.send("Unauthorized User")
+    } else {
     Product.findOne({
         where: {
             id : req.params.id
@@ -32,6 +35,7 @@ router.get('/:id', (req, res, next) => {
         res.json(product)
     })
     .catch(next)
+    }
 })
 
 module.exports = router;

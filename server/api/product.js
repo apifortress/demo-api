@@ -3,6 +3,9 @@ const Product = require('../db/models/product')
 const Op = require('sequelize').Op
 
 router.get('/', (req, res, next) => {
+    if (req.headers.token !== "APIToken"){
+        res.send("Unauthorized User")
+    } else {
     if(req.query.search) {
         Product.findAll({
             where: {
@@ -14,7 +17,8 @@ router.get('/', (req, res, next) => {
         })
         .catch(next)
     } else {
-        res.send("Hello from products!")
+        Product.findAll().then(products => res.send(products))
+        }
     }
 })
 

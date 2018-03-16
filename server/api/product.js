@@ -2,6 +2,9 @@ const router = require('express').Router();
 const Product = require('../db/models/product')
 const Op = require('sequelize').Op
 
+//check for token; If token and query param, find appropriate db entry(s)
+//else, if token return all items
+//if no token, return unauthorized user
 router.get('/', (req, res, next) => {
     if (req.headers.token !== "APIToken"){
         res.send("Unauthorized User")
@@ -22,6 +25,8 @@ router.get('/', (req, res, next) => {
     }
 })
 
+//if token, return item by id
+//else, unauthorized user
 router.get('/:id', (req, res, next) => {
     if (req.headers.token !== "APIToken"){
         res.send("Unauthorized User")

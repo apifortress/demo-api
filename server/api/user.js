@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const User = require('../db/models/user')
 
+
+//if user credentials are correct, return api token. else, return bad u/p message
 router.get('/', (req, res, next) => {
     const currentUser = req.headers.user;
     const password = req.headers.pass;

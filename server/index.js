@@ -9,10 +9,11 @@ const db = require('./db')
 //connection status middleware
 app.use(volleyball) 
 
-// app.use() //body parsing middleware
+//body parsing middleware
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
+//api routing middleware
 app.use('/api', require('./api'))
 
 app.use((err, req, res, next) => {

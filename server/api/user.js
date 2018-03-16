@@ -12,9 +12,10 @@ router.get('/', (req, res, next) => {
         (user) => {
                 if(password === user.password){
                     res.send("APIToken")
-                } else {res.send("Bad Username or Password. Please ty again.")
+                } else {
+                    res.send("Bad Username or Password. Please ty again.")
+                }
             }
-        }
         ) 
     }
 )

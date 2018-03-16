@@ -3,6 +3,7 @@ const app = express()
 const PORT = 3000
 const volleyball = require('volleyball')
 const bodyParser = require('body-parser')
+const api = require('./api')
 
 //connection status middleware
 app.use(volleyball) 
@@ -10,6 +11,8 @@ app.use(volleyball)
 // app.use() //body parsing middleware
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+
+app.use('/api', require('./api'))
 
 app.listen(PORT, function(){
     console.log('listening on 3000') //logging to view server start

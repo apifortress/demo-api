@@ -14,6 +14,15 @@ const Product = db.define('product', {
     },
     description: {
         type: Sequelize.TEXT
+    },
+    quantity: {
+        type: Sequelize.INTEGER
+    },
+    imageURL: {
+        type: Sequelize.STRING
+    },
+    color: {
+        type: Sequelize.ARRAY(Sequelize.STRING)
     }
 })
 

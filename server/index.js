@@ -14,6 +14,13 @@ app.use(bodyParser.json())
 
 app.use('/api', require('./api'))
 
+app.use((err, req, res, next) => {
+    console.error(err)
+    console.error(err.stack)
+    res.status(err.status || 500).send(err.message || 'Internal server error.')
+  }) // Generic error handling.
+
+
 app.listen(PORT, function(){
     console.log('listening on 3000') //logging to view server start
 })

@@ -7,10 +7,13 @@ const Product = db.define('product', {
         type: Sequelize.STRING
     },
     price: {
-        type: Sequelize.INTEGER
+        type: Sequelize.FLOAT
     },
     category: {
         type: Sequelize.STRING
+    },
+    description: {
+        type: Sequelize.TEXT
     }
 })
 

@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const Product = require('../db/models/product')
 
 router.get('/', (req, res, next) => {
     if(req.query.search) {
@@ -9,7 +10,13 @@ router.get('/', (req, res, next) => {
 })
 
 router.get('/:id', (req, res, next) => {
-    res.send(req.params.id)
+    Product.findOne({
+        where: {
+            id : req.params.id
+        }
+    })
+    .then(product => {res.json(product)})
+    .catch(next)
 })
 
 module.exports = router;

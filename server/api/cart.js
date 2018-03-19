@@ -18,16 +18,20 @@ router.put('/', (req, res, next) => {
     }
 })
 
-router.get("/", (req, res, next) => {
-
+router.get("/",  async (req, res, next) => {
     if(req.headers.usertoken === "USERTOKEN123AAABBB"){
-        let cacheKeys = (cache.keys())
+        let cacheKeys = cache.keys()
         let cartObj = {}
-        cacheKeys.forEach((key) => {
-            cartObj[key] = cache.get(key)
-    })
-
-    res.send(cartObj)
+        let products = [];
+        Promise.all(cacheKeys.map((key) => {
+            return Product.findById(key)
+            .then(product => {
+                let productName = product.dataValues
+                let prodObj = {[productName.name]: cache.get(key)};
+                products.push(prodObj)
+                
+        })
+    })).then(() => res.send(products))
     }
     else {
         res.send("Bad User Token")

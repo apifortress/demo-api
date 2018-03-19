@@ -6,7 +6,7 @@ const Op = require('sequelize').Op
 else, if token return all items
 if no token, return unauthorized user*/
 router.get('/', (req, res, next) => {
-    if (req.headers.token !== "APIToken"){
+    if (req.headers.key !== "ABC123"){
         res.send("Unauthorized User")
     } else {
     if(req.query.search) {
@@ -28,7 +28,7 @@ router.get('/', (req, res, next) => {
 /*if token, return item by id
 else, unauthorized user*/
 router.get('/:id', (req, res, next) => {
-    if (req.headers.token !== "APIToken"){
+    if (req.headers.key !== "ABC123"){
         res.send("Unauthorized User")
     } else {
     Product.findOne({

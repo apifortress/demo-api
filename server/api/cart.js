@@ -12,9 +12,9 @@ router.put('/', (req, res, next) => {
             cache.put(item, req.body[item], 18000000)
     }
     
-    res.sendStatus(201)
+        res.send({Message: "Successfully added", Status: 201})
     } else {
-        res.send("Bad User Token")
+        res.send({Error: "Bad User Token", Status: 401})
     }
 })
 
@@ -27,14 +27,16 @@ router.get("/",  async (req, res, next) => {
             return Product.findById(key)
             .then(product => {
                 let productName = product.dataValues
-                let prodObj = {[productName.name]: cache.get(key)};
+                let prodObj = {id: key, 
+                               item: productName.name, 
+                               quantity : cache.get(key)};
                 products.push(prodObj)
                 
         })
     })).then(() => res.send(products))
     }
     else {
-        res.send("Bad User Token")
+        res.send({Error: "Bad User Token", Status: 401})
     }
 })
 

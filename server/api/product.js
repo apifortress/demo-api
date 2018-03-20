@@ -7,7 +7,7 @@ else, if token return all items
 if no token, return unauthorized user*/
 router.get('/', (req, res, next) => {
     if (req.headers.key !== "ABC123"){
-        res.send("Unauthorized User")
+        res.send({Message: "Unauthorized Token", Status: 401})
     } else {
     if(req.query.search) {
         Product.findAll({
@@ -26,10 +26,10 @@ router.get('/', (req, res, next) => {
 })
 
 /*if token, return item by id
-else, unauthorized user*/
+else, unauthorized token*/
 router.get('/:id', (req, res, next) => {
     if (req.headers.key !== "ABC123"){
-        res.send("Unauthorized User")
+        res.send({Error: "Unauthorized Token", Status: 401})
     } else {
     Product.findOne({
         where: {

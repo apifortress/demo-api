@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const User = require('../db/models/user')
-const Product = require('../db/models/product')
+const User = require('../../db/models/user')
+const Product = require('../../db/models/product')
 const cache = require('memory-cache')
 
 router.put('/', (req, res, next) => {

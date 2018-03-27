@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const Product = require('../db/models/product')
+const Product = require('../../db/models/product')
 const Op = require('sequelize').Op
 
 /*check for token; If token and query param, find appropriate db entry(s)

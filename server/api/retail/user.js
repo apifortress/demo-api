@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const User = require('../db/models/user')
+const User = require('../../db/models/user')
 
 
 //if user credentials are correct, return api token. else, return bad u/p message

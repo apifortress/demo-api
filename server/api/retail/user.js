@@ -13,7 +13,7 @@ router.post('/', (req, res, next) => {
     }).then(
         (user) => { 
                 if (password == user.password){
-                    res.send({Message: "Login Successful", Token: "USERTOKEN123AAABBB"})
+                    res.send({Message: "Login Successful", token: "USERTOKEN123AAABBB"})
                 } else {
                     res.send({Message: "Bad Username or Password. Please try again.", Status: 401})
                 }

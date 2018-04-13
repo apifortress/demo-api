@@ -29,6 +29,7 @@ router.get('/', (req, res, next) => {
 else, unauthorized token*/
 router.get('/:id', (req, res, next) => {
     if (req.headers.key !== "ABC123"){
+        res.status(401)
         res.send({Error: "Unauthorized Token", Status: 401})
     } else {
     Product.findOne({

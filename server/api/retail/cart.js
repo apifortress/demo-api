@@ -11,9 +11,10 @@ router.put('/', (req, res, next) => {
             cart[item] = req.body[item]
             cache.put(item, req.body[item], 18000000)
     }
-    
+        res.status(201)
         res.send({Message: "Successfully added", Status: 201})
     } else {
+        res.status(401)
         res.send({Error: "Bad User Token", Status: 401})
     }
 })
@@ -36,6 +37,7 @@ router.get("/",  async (req, res, next) => {
     })).then(() => res.send(products))
     }
     else {
+        res.status(401)
         res.send({Error: "Bad User Token", Status: 401})
     }
 })

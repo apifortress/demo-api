@@ -7,6 +7,7 @@ else, if token return all items
 if no token, return unauthorized user*/
 router.get('/', (req, res, next) => {
     if (req.headers.key !== "ABC123"){
+        res.status(401)
         res.send({Message: "Unauthorized Token", Status: 401})
     } else {
     if(req.query.search) {
@@ -38,7 +39,11 @@ router.get('/:id', (req, res, next) => {
         }
     })
     .then(product => {
-        res.json(product)
+        if (product === null) {
+            res.sendStatus(404)
+        } else {
+            res.json(product)
+    }
     })
     .catch(next)
     }

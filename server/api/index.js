@@ -3,6 +3,7 @@ const router = require('express').Router();
 //routing middleware
 router.use('/retail', require('./retail'))
 router.use('/junit', require('./junit'))
+router.use('/soap', require('./soap'))
 
 //bad api route middleware
 router.use((req, res, next) => {

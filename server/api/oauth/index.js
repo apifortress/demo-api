@@ -19,7 +19,7 @@ router.post('/auth', (req, res, next) => {
                 (user) => {
                     if (user === null) {
                         res.status(401)
-                        res.send("Bad Username/Password")
+                        res.send({"Message": "Bad Username/Password", "Status": "401 (Unauthorized)"})
                     } else if (password == user.password){
                         res.send({Message: "Authentication Successful", Token: "USERTOKEN123AAABBB"})
                     } else {

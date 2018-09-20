@@ -4,7 +4,7 @@ const User = require('../../db/models/user')
 router.post('/auth', (req, res, next) => {
     if (req.headers.authorization === undefined) {
         res.status(401)
-        res.send("Bad Authorization Header")
+        res.send({"Message": "No Authorization Header", "Status": "401 (Unauthorized)"})
     } else {
         const authHeader = req.headers.authorization.split(' ')
         if (authHeader[0] === "Basic") {
@@ -21,16 +21,16 @@ router.post('/auth', (req, res, next) => {
                         res.status(401)
                         res.send("Bad Username/Password")
                     } else if (password == user.password){
-                        res.send({message: "Authentication Successful", Token: "USERTOKEN123AAABBB"})
+                        res.send({Message: "Authentication Successful", Token: "USERTOKEN123AAABBB"})
                     } else {
                         res.status(401)
-                        res.send("Bad Username/Password")
+                        res.send({"Message": "Bad Username/Password", "Status": "401 (Unauthorized)"})
                     }
                 } 
             )
         } else {
             res.status(401)
-            res.send("Bad Authorization Header")
+            res.send({"Message": "No Authorization Header", "Status": "401 (Unauthorized)"})
         }
     }
 })

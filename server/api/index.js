@@ -4,6 +4,7 @@ const router = require('express').Router();
 router.use('/retail', require('./retail'))
 router.use('/junit', require('./junit'))
 router.use('/soap', require('./soap'))
+router.use('/oauth', require('./oauth'))
 
 //bad api route middleware
 router.use((req, res, next) => {
